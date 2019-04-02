@@ -289,11 +289,10 @@ function Task(client, name, options, exchange) {
         }
 
         queue = options.queue || self.options.queue || queue || self.client.conf.DEFAULT_QUEUE;
-        var msg = args[0];
+        var msg = createMessage(self.name, args, kwargs, options, id);
         var pubOptions = {
             'contentType': 'application/json',
-            'contentEncoding': 'utf-8',
-            ...options
+            'contentEncoding': 'utf-8'
         };
 
         if (exchange) {
